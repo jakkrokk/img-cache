@@ -80,41 +80,6 @@ Class ImgCache extends Config{
 	 * @author jakkrokk
 	 * @copyright jakkrokk
 	 */
-	public function test() {
-		$img = file_get_contents('/var/www/html/img.sn.taidakyo.com/p.png');
-
-		//POSTデータ
-		$data = [
-			'uid' => '1',
-			'name' => 'p.png',
-			'bin' => $img
-		];
-		$data = http_build_query($data,'','&');
-
-		//header
-		$header = [
-			'Content-Type: application/x-www-form-urlencoded',
-			'Content-Length: '.strlen($data)
-		];
-		$context = [
-			'http' => [
-				'method' => 'POST',
-				'header'  => implode("\r\n", $header),
-				'content' => $data
-			]
-		];
-
-		$url = "http://img.sn.taidakyo.com/attach.php";
-		echo file_get_contents($url,false,stream_context_create($context));
-	}
-
-
-	/**
-	 *
-	 *
-	 * @author jakkrokk
-	 * @copyright jakkrokk
-	 */
 	private function isImage($path) {
 		return in_array(exif_imagetype($path),self::ALLOW_IMAGE_TYPE);
 	}
