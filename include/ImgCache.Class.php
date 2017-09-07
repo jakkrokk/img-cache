@@ -51,6 +51,8 @@ Class ImgCache extends Config{
 	 * @copyright jakkrokk
 	 */
 	public function detach($f) {
+		$ff = explode('/',$f);
+		$f = end($ff);
 		if (file_exists(parent::IMG_SAVE_DIR.$f)) {
 			unlink(parent::IMG_SAVE_DIR.$f);
 			echo 1;
